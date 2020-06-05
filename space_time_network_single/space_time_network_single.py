@@ -156,6 +156,8 @@ class space_time_network:
     def __node_num2station_state_time(self, node_num):
         num = (node_num - 2) // self.__time_len
         time = (node_num - 2) % self.__time_len
+        if time == 0:
+            time = self.__time_len
         if num >= 1:
             station = (num - 1) // 3 + 2
             state = num - 1 - (station - 2) * 3 + 1
@@ -400,7 +402,7 @@ class space_time_network:
                 d_station = p[len(p) - 1][0]
                 o_time = p[0][1] + s_time - 1
                 d_time = p[len(p) - 1][1] + s_time - 1
-                time_period=space_time_network.__get_time(o_time)+'_'+space_time_network.__get_time(d_time)
+                time_period = space_time_network.__get_time(o_time) + '_' + space_time_network.__get_time(d_time)
                 o_zone_id = space_time_network.__get_zone_id(o_station, o_time, zone_list)
                 d_zone_id = space_time_network.__get_zone_id(d_station, d_time, zone_list)
                 o_node_id = space_time_network.__get_node_id(o_station, o_time)
@@ -416,7 +418,8 @@ class space_time_network:
                     time_sequence += space_time_network.__get_time(now_time) + ';'
                 node_sequence += str(d_node_id)
                 time_sequence += space_time_network.__get_time(d_time)
-                line.extend([agent_id, o_zone_id, d_zone_id, o_node_id, d_node_id, now_train_type, time_period, 1, travel_time, travel_time, travel_time, node_sequence, time_sequence])
+                line.extend(
+                    [agent_id, o_zone_id, d_zone_id, o_node_id, d_node_id, now_train_type, time_period, 1, travel_time, travel_time, travel_time, node_sequence, time_sequence])
                 w.writerow(line)
                 agent_id += 1
         f.close()
@@ -573,7 +576,7 @@ class read:
         for l in lines:
             l[1] = l[1].split(';')
             for i in l[1]:
-                train_type.insert(int(i) - 1, l[0].replace('\t',''))
+                train_type.insert(int(i) - 1, l[0].replace('\t', ''))
         path = os.path.dirname(os.path.realpath(__file__)) + '\\output_file\\agent_type.csv'
         with open(path, 'w+', newline='') as f:
             w = csv.writer(f)

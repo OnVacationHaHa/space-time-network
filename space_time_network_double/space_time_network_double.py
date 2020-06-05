@@ -133,6 +133,8 @@ class space_time_network:
     def __node_num2station_state_time(self, node_num):
         num = (node_num - 2) // self.__time_len
         time = (node_num - 2) % self.__time_len
+        if time == 0:
+            time = self.__time_len
         if num >= 1:
             station = (num - 1) // 3 + 2
             state = num - 1 - (station - 2) * 3 + 1
