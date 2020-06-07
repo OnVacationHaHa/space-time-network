@@ -204,7 +204,7 @@ class space_time_network:
         if state == 2:
             if same_next_direction:
                 if station != self.__start_station:
-                    for now_time in range(time, time + T_fadao if time + T_fadao < self.__e_time else self.__e_time):  # 不同时发到间隔
+                    for now_time in range(time, time + T_fadao if time + T_fadao < self.__e_time + 1 else self.__e_time + 1):  # 不同时发到间隔
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
                     for now_time in range(time - T_daofa + 1 if time - T_daofa + 1 > self.__s_time else self.__s_time, time + 1):  # 不同时到发
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
@@ -218,22 +218,22 @@ class space_time_network:
         if state == 1:
             if same_next_direction:
                 if last_station != 0:
-                    for now_time in range(time - running_time, time + T_lian if time + T_lian < self.__e_time else self.__e_time):  # 连发间隔时间
+                    for now_time in range(time - running_time, time + T_lian if time + T_lian < self.__e_time + 1 else self.__e_time + 1):  # 连发间隔时间
                         if now_time < self.__s_time:
                             continue
                         forbid_node_list.append(self.__return_node_num(last_station, 2, now_time))
                 if station != self.__end_station:
-                    for now_time in range(time, time + T_daofa if time + T_daofa < self.__e_time else self.__e_time):  # 不同时到发
+                    for now_time in range(time, time + T_daofa if time + T_daofa < self.__e_time + 1 else self.__e_time + 1):  # 不同时到发
                         forbid_node_list.append(self.__return_node_num(station, 2, now_time))
                     for now_time in range(time - T_fadao + 1 if time - T_fadao + 1 > self.__s_time else self.__s_time, time + 1):  # 不同时发到
                         forbid_node_list.append(self.__return_node_num(station, 2, now_time))
             else:
                 for now_time in range(time - T_bu + 1 if time - T_bu + 1 > self.__s_time else self.__s_time,
-                                      time + T_bu if time + T_bu < self.__e_time else self.__e_time):  # 不同时到达
+                                      time + T_bu if time + T_bu < self.__e_time + 1 else self.__e_time + 1):  # 不同时到达
                     if station != self.__end_station:
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
                         forbid_node_list.append(self.__return_node_num(station, 3, now_time))
-                for now_time in range(time, time + T_hui if time + T_hui < self.__e_time else self.__e_time):  # 会车间隔
+                for now_time in range(time, time + T_hui if time + T_hui < self.__e_time + 1 else self.__e_time + 1):  # 会车间隔
                     if station == self.__end_station:
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
                     else:
@@ -242,13 +242,13 @@ class space_time_network:
             if same_next_direction:
                 if last_station != 0:
                     for now_time in range(time - running_time if time - running_time > self.__s_time else self.__s_time,
-                                          time + T_lian if time + T_lian < self.__e_time else self.__e_time):  # 连发间隔时间
+                                          time + T_lian if time + T_lian < self.__e_time+1 else self.__e_time+1):  # 连发间隔时间
                         forbid_node_list.append(self.__return_node_num(last_station, 2, now_time))
             else:
                 for now_time in range(time - T_butong - 1 if time - T_butong - 1 > self.__s_time else self.__s_time,
-                                      time + T_butong if time + T_butong < self.__e_time else self.__e_time):  # 不同时通过
+                                      time + T_butong if time + T_butong < self.__e_time +1else self.__e_time+1):  # 不同时通过
                     forbid_node_list.append(self.__return_node_num(station, 3, now_time))
-                for now_time in range(time, time + T_hui if time + T_hui < self.__e_time else self.__e_time):  # 会车间隔
+                for now_time in range(time, time + T_hui if time + T_hui < self.__e_time +1else self.__e_time+1):  # 会车间隔
                     forbid_node_list.append(self.__return_node_num(station, 2, now_time))
                 for now_time in range(time - T_bu + 1 if time - T_bu + 1 > self.__s_time else self.__s_time, time + 1):  # 不同时到达
                     forbid_node_list.append(self.__return_node_num(station, 1, now_time))
