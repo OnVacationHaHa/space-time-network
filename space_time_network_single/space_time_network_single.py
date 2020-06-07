@@ -206,7 +206,7 @@ class space_time_network:
                 if station != self.__start_station:
                     for now_time in range(time, time + T_fadao if time + T_fadao < self.__e_time else self.__e_time):  # 不同时发到间隔
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
-                    for now_time in range(time - T_daofa + 1 if time - T_daofa + 1 < self.__s_time else self.__s_time, time + 1):  # 不同时到发
+                    for now_time in range(time - T_daofa + 1 if time - T_daofa + 1 > self.__s_time else self.__s_time, time + 1):  # 不同时到发
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
             else:
                 for now_time in range(time - T_hui + 1 if time - T_hui + 1 > self.__s_time else self.__s_time, time + 1):  # 会车时间间隔
