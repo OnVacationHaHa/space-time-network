@@ -222,6 +222,8 @@ class space_time_network:
                         if now_time < self.__s_time:
                             continue
                         forbid_node_list.append(self.__return_node_num(last_station, 2, now_time))
+                        if last_station!=self.__start_station
+                            forbid_node_list.append(self.__return_node_num(last_station, 3, now_time))
                 if station != self.__end_station:
                     for now_time in range(time, time + T_daofa if time + T_daofa < self.__e_time + 1 else self.__e_time + 1):  # 不同时到发
                         forbid_node_list.append(self.__return_node_num(station, 2, now_time))
