@@ -246,6 +246,8 @@ class space_time_network:
                     for now_time in range(time - running_time if time - running_time > self.__s_time else self.__s_time,
                                           time + T_lian if time + T_lian < self.__e_time+1 else self.__e_time+1):  # 连发间隔时间
                         forbid_node_list.append(self.__return_node_num(last_station, 2, now_time))
+                        if last_station != self.__start_station:
+                            forbid_node_list.append(self.__return_node_num(last_station, 3, now_time))
             else:
                 for now_time in range(time - T_butong - 1 if time - T_butong - 1 > self.__s_time else self.__s_time,
                                       time + T_butong if time + T_butong < self.__e_time +1else self.__e_time+1):  # 不同时通过
