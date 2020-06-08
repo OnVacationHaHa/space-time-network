@@ -214,7 +214,7 @@ class space_time_network:
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
                         forbid_node_list.append(self.__return_node_num(station, 3, now_time))
                     else:
-                        forbid_node_list.append(self.__return_node_num(station, 1, now_time))
+                        forbid_node_list.append(self.__return_node_num(station, 2, now_time))
         if state == 1:
             if same_next_direction:
                 if last_station != 0:
@@ -222,7 +222,7 @@ class space_time_network:
                         if now_time < self.__s_time:
                             continue
                         forbid_node_list.append(self.__return_node_num(last_station, 2, now_time))
-                        if last_station!=self.__start_station
+                        if last_station != self.__start_station:
                             forbid_node_list.append(self.__return_node_num(last_station, 3, now_time))
                 if station != self.__end_station:
                     for now_time in range(time, time + T_daofa if time + T_daofa < self.__e_time + 1 else self.__e_time + 1):  # 不同时到发
