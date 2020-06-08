@@ -194,7 +194,6 @@ class space_time_network:
         T_lian = self.__time_interval[self.__train_num - 1][2]
         T_daofa = self.__time_interval[self.__train_num - 1][3]
         T_fadao = self.__time_interval[self.__train_num - 1][4]
-        T_butong = self.__time_interval[self.__train_num - 1][5]
         forbid_node_list = []
         time = time + self.__s_time - 1
         if self.__start_station == 1:
@@ -249,9 +248,6 @@ class space_time_network:
                         if last_station != self.__start_station:
                             forbid_node_list.append(self.__return_node_num(last_station, 3, now_time))
             else:
-                for now_time in range(time - T_butong - 1 if time - T_butong - 1 > self.__s_time else self.__s_time,
-                                      time + T_butong if time + T_butong < self.__e_time +1else self.__e_time+1):  # 不同时通过
-                    forbid_node_list.append(self.__return_node_num(station, 3, now_time))
                 for now_time in range(time, time + T_hui if time + T_hui < self.__e_time +1else self.__e_time+1):  # 会车间隔
                     forbid_node_list.append(self.__return_node_num(station, 2, now_time))
                 for now_time in range(time - T_bu + 1 if time - T_bu + 1 > self.__s_time else self.__s_time, time + 1):  # 不同时到达
