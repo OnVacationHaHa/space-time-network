@@ -214,7 +214,7 @@ class space_time_network:
                         forbid_node_list.append(self.__return_node_num(station, 1, now_time))
                         forbid_node_list.append(self.__return_node_num(station, 3, now_time))
                     else:
-                        forbid_node_list.append(self.__return_node_num(station, 2, now_time))
+                        forbid_node_list.append(self.__return_node_num(station, 1, now_time))
         if state == 1:
             if same_next_direction:
                 if last_station != 0:
