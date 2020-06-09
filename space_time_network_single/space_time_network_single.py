@@ -189,11 +189,11 @@ class space_time_network:
         return forbid_node_list
 
     def get_forbid_node(self, station, state, time, running_time, same_next_direction):
-        T_bu = self.__time_interval[self.__train_num - 1][0]
-        T_hui = self.__time_interval[self.__train_num - 1][1]
-        T_lian = self.__time_interval[self.__train_num - 1][2]
-        T_daofa = self.__time_interval[self.__train_num - 1][3]
-        T_fadao = self.__time_interval[self.__train_num - 1][4]
+        T_bu = self.__time_interval[station - 1][0]
+        T_hui = self.__time_interval[station - 1][1]
+        T_lian = self.__time_interval[station - 1][2]
+        T_daofa = self.__time_interval[station - 1][3]
+        T_fadao = self.__time_interval[station - 1][4]
         forbid_node_list = []
         time = time + self.__s_time - 1
         if self.__start_station == 1:
